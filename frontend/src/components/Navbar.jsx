@@ -28,7 +28,7 @@ const Navbar = () => {
             </button>
           )}
           <Link to="/" className="text-xl font-black text-indigo-900 tracking-tight">
-             Sam's App
+             Tour Package App
           </Link>
         </div>
         
