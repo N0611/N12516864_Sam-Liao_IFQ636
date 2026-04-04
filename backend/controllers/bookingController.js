@@ -1,5 +1,5 @@
-const Booking = require('../models/booking');
-const mongoose = require('mongoose'); // 🔴 引入 mongoose 來檢查 ID
+const Booking = require('../models/Bookings');
+const mongoose = require('mongoose'); 
 
 // ✅ 1. 新增預訂
 exports.createBooking = async (req, res) => {
