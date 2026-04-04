@@ -1,5 +1,6 @@
-const Booking = require('../models/Bookings');
+const Booking = require('../models/Booking1');
 const mongoose = require('mongoose'); 
+
 
 // ✅ 1. 新增預訂
 exports.createBooking = async (req, res) => {
