@@ -1,66 +1,71 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Profile from './pages/Profile';
-import Home from './pages/Home';          
-import ManageTours from './pages/Tours'; // 確保路徑指向你改好的 ManageTours 檔案
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { TourProvider } from './context/TourContext';
-
-// 建立一個保護路由
-const PrivateRoute = ({ children }) => {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
-};
+import AdminHome from './pages/AdminHome';
+import UserHome from './pages/UserHome'; 
+import TourDetail from './pages/TourDetail';
+import ManageTours from './pages/ManageTours'; 
+import EditTour from './pages/EditTour';
+import Navbar from './components/Navbar';
+import MyBookings from './pages/MyBookings';
+import BookTour from './pages/BookTour';  
+import Payment from './pages/Payment';    
+import EditBooking from './pages/EditBooking';
+import CancelBooking from './pages/CancelBooking'; 
+import AdminOrders from './pages/AdminOrders';
 
 function App() {
-  return (
-    <AuthProvider>
-      <TourProvider>
-        <Router>
-          {/* 1. 最外層：全螢幕灰色背景，模擬手機放在桌上的感覺 */}
-          <div className="bg-gray-100 min-h-screen">
-            
-            {/* 2. 手機容器：限制最大寬度 420px 並居中 */}
-            <div className="max-w-[420px] mx-auto bg-white min-h-screen shadow-2xl relative flex flex-col">
-              
-              {/* 3. 手機版 Navbar (它會自動繼承父層的 420px 寬度) */}
-              <Navbar />
-              
-              {/* 4. 內容區：pt-16 是為了空出位置給 fixed 的 Navbar */}
-              <div className="flex-1 pt-16">
-                <Routes>
-                  {/* 登入與註冊頁通常不顯示 Navbar，這在 Navbar.jsx 裡處理了 */}
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  
-                  {/* 登入後首頁：手機 App 歡迎介面 */}
-                  <Route path="/" element={<Home />} />
-                  
-                  {/* 管理頁：手機版 CRUD 介面 */}
-                  <Route path="/manage-tours" element={
-                    <PrivateRoute>
-                      <ManageTours />
-                    </PrivateRoute>
-                  } />
-                  
-                  <Route path="/profile" element={<Profile />} />
-                  
-                  {/* 自動導向：如果輸入錯誤網址，回首頁 */}
-                  <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
-              </div>
+  const { user } = useAuth();
 
-              {/* 5. 裝飾用：手機底部黑條 (選配，增加 APP 感) */}
-              <div className="h-6 bg-white flex justify-center items-end pb-2">
-                <div className="w-28 h-1 bg-gray-200 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </Router>
-      </TourProvider>
-    </AuthProvider>
+  return (
+    <Router>
+      <Navbar />
+      
+      <div className="min-h-screen bg-gray-50">
+        <Routes>
+          {/* 1. 首頁：動態判斷 Admin 或 User */}
+          <Route path="/" element={
+            user ? (
+              user.role === 'admin' ? <AdminHome /> : <UserHome />
+            ) : (
+              <Navigate to="/login" />
+            )
+          } />
+
+          {/* 2. 認證路由 */}
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+          <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
+          
+          {/* 3. User 專屬：詳情與預訂流程 */}
+          <Route path="/tour/:id" element={user ? <TourDetail /> : <Navigate to="/login" />} />
+          
+          {/* 🔴 補上這兩行，預訂功能才能正常運作 */}
+          <Route path="/book-tour/:id" element={user ? <BookTour /> : <Navigate to="/login" />} />
+          <Route path="/payment" element={user ? <Payment /> : <Navigate to="/login" />} />
+          <Route path="/edit-booking/:id" element={user ? <EditBooking /> : <Navigate to="/login" />} />
+          <Route path="/my-bookings" element={user ? <MyBookings /> : <Navigate to="/login" />} />
+          <Route path="/cancel-booking/:id" element={user ? <CancelBooking /> : <Navigate to="/login" />} />
+
+          {/* 4. Admin 專屬路由 */}
+          <Route 
+            path="/manage-tours" 
+            element={user?.role === 'admin' ? <ManageTours /> : <Navigate to="/" />} 
+          />
+          <Route 
+            path="/admin-orders" 
+            element={user?.role === 'admin' ? <AdminOrders /> : <Navigate to="/" />} 
+          />
+          <Route 
+            path="/edit-tour/:id" 
+            element={user?.role === 'admin' ? <EditTour /> : <Navigate to="/" />} 
+          />
+
+          {/* 5. 防錯路由 */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
