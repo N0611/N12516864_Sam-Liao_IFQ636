@@ -1,12 +1,10 @@
 # 🌏 Explore Australia: Adventure Management System
 
-[![CI/CD Pipeline](https://github.com/n12516864/N12516864_Sam-Liao_IFQ636/actions/workflows/ci.yml/badge.svg)](https://github.com/n12516864/N12516864_Sam-Liao_IFQ636/actions)
-
 **Explore Australia** is a full-stack MERN (MongoDB, Express, React, Node.js) application tailored for travelers to plan and organize their Australian journeys. This project showcases a robust DevOps lifecycle, featuring automated testing, continuous integration, and cloud deployment.
 
 ### 🌐 Live Demo
 Experience the live application here:  
-👉 [http://13.239.24.246:3000](http://13.239.24.246:3000)
+👉 [http://13.239.24.246](http://13.239.24.246)
 
 ---
 
