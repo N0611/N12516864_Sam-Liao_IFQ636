@@ -19,7 +19,7 @@ const Payment = () => {
       tourDate: state.tourDate,
       quantity: state.quantity,
       totalPrice: state.totalPrice,
-      personalInfo: state.personalInfo // 這裡會包含 fullName, email, phone
+      personalInfo: state.personalInfo 
     };
 
     await axiosInstance.post('/api/bookings', payload);
