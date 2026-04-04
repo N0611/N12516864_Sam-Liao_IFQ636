@@ -13,7 +13,7 @@ const Payment = () => {
 
   const handlePay = async () => {
   try {
-    // 🔴 這裡直接抓取 state，結構已經在 BookTour 處理好了
+
     const payload = {
       tour: state.tour,
       tourDate: state.tourDate,
