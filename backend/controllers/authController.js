@@ -44,7 +44,7 @@ const loginUser = async (req, res) => {
     try {
         const user = await User.findOne({ email });
 
-        // 🔴 使用我們剛才在 Model 裡面寫的 matchPassword 方法
+        
         if (user && (await user.matchPassword(password))) {
             res.json({
                 id: user._id,
