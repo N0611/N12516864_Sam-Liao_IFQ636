@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5001',
+  baseURL: 'http://13.239.24.246:5001',
+   headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 axiosInstance.interceptors.request.use(
@@ -20,7 +23,6 @@ axiosInstance.interceptors.request.use(
         console.error("Axios: 解析 userInfo 失敗", err);
       }
     } else {
-      // 🔴 你現在就是一直跳這行
       console.warn("🛰️ Axios: localStorage 找不到 userInfo，無法注入 Token");
     }
     return config;
