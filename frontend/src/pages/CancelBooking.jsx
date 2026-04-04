@@ -68,7 +68,7 @@ const CancelBooking = () => {
         </div>
         <div className="flex items-center space-x-4 bg-white/10 p-3 rounded-2xl border border-white/20">
             <img 
-              src={booking?.tour?.imageUrl?.startsWith('http') ? booking.tour.imageUrl : `http://localhost:5001${booking?.tour?.imageUrl}`} 
+              src={booking?.tour?.imageUrl?.startsWith('http') ? booking.tour.imageUrl : `${booking?.tour?.imageUrl}`} 
               alt="" 
               className="w-14 h-14 rounded-xl object-cover" 
             />

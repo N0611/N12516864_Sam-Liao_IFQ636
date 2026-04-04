@@ -18,9 +18,6 @@ connectDB();
 // 中間件設定
 app.use(cors());
 app.use(express.json());
-
-// ✅ 開放 'uploads' 資料夾讓外部存取圖片
-// 確保這行在 app 宣告之後
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // 路由設定

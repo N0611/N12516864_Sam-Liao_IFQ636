@@ -58,7 +58,7 @@ const BookTour = () => {
         </div>
         <div className="flex items-center space-x-5">
             <img 
-              src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `http://localhost:5001${tour.imageUrl}`} 
+              src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `${tour.imageUrl}`} 
               alt={tour.title}
               className="w-16 h-16 rounded-2xl object-cover border-2 border-white/20" 
             />

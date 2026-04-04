@@ -44,7 +44,7 @@ const TourDetail = () => {
         <div className="bg-white p-5 rounded-[48px] shadow-2xl shadow-gray-200/50 flex items-center space-x-5 relative z-10">
           <div className="relative">
             <img 
-              src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `http://localhost:5001${tour.imageUrl}`} 
+              src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `${tour.imageUrl}`} 
               className="w-32 h-32 object-cover rounded-[32px]" 
               alt={tour.title} 
             />

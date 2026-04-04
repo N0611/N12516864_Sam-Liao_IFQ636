@@ -59,7 +59,7 @@ const UserHome = () => {
         {tours.map(tour => (
           <div key={tour._id} onClick={() => navigate(`/tour/${tour._id}`)} className="flex items-center space-x-5 group cursor-pointer bg-white p-3 rounded-[30px] shadow-sm hover:shadow-md transition-all">
             <img 
-              src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `http://localhost:5001${tour.imageUrl}`} 
+              src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `${tour.imageUrl}`} 
               className="w-24 h-24 rounded-[22px] object-cover" 
               alt={tour.title}
             />

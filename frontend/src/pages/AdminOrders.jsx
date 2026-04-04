@@ -39,7 +39,7 @@ const AdminOrders = () => {
                 className="flex items-center space-x-4 bg-white p-4 rounded-[28px] border border-gray-100 shadow-sm active:scale-95 transition-all"
               >
                 <img 
-                  src={booking.tour?.imageUrl?.startsWith('http') ? booking.tour.imageUrl : `http://localhost:5001${booking.tour?.imageUrl}`} 
+                  src={booking.tour?.imageUrl?.startsWith('http') ? booking.tour.imageUrl : `${booking.tour?.imageUrl}`} 
                   className="w-14 h-14 rounded-xl object-cover" 
                   alt="" 
                 />

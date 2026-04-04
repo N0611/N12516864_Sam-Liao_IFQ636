@@ -45,7 +45,7 @@ const AdminHome = () => {
       <div className="space-y-6">
         {tours.map(tour => (
           <div key={tour._id} onClick={() => navigate(`/tour/${tour._id}`)} className="flex items-center space-x-4 group cursor-pointer bg-white p-3 rounded-[30px] shadow-sm">
-            <img src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `http://localhost:5001${tour.imageUrl}`} className="w-20 h-20 rounded-[22px] object-cover" alt="" />
+            <img src={tour.imageUrl?.startsWith('http') ? tour.imageUrl : `https://www.google.com/search?q=http://13.239.24.246:5001/uploads/${tour.image}`} className="w-20 h-20 rounded-[22px] object-cover" alt="" />
             <div className="flex-1">
               <h4 className="font-black text-slate-800 text-sm mb-1">{tour.title}</h4>
               <p className="text-gray-400 text-[10px] font-bold">📍 {tour.location}</p>

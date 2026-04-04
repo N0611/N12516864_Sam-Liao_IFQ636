@@ -43,7 +43,7 @@ const EditTour = () => {
           imageFile: null
         });
         if (data.imageUrl) {
-          setPreview(data.imageUrl.startsWith('http') ? data.imageUrl : `http://localhost:5001${data.imageUrl}`);
+          setPreview(data.imageUrl.startsWith('http') ? data.imageUrl : `${data.imageUrl}`);
         }
       } catch (err) {
         console.error("Fetch error:", err);
